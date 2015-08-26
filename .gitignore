@@ -1,0 +1,6 @@
+/resource/logfile
+/resource/autoconfig
+.idea/*
+.flooignore
+target/
+.DS_store

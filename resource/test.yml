@@ -1,0 +1,18 @@
+!!adeuni.group.ec.algorithm.configuration.yml.YamlConfiguration
+algorithm: InverOverEA
+eliteSize: 1
+filename: resource/tsp/pr2392.tsp
+immigrateSize: 0
+offspringSize: 109
+parentAllowToSurvive: true
+parentSelectionRouletteCellList:
+- {selection: ElitismSelection, weight: 1.0}
+representation: PermutationRepresentation
+survivorSelectionRouletteCellList:
+- {selection: BestSelection, weight: 1.0}
+survivorSize: 99
+terminationCriteriaPool:
+#- {criterion: IterationTerminationCriterion, maxIterationRound: 20000}
+- {criterion: ExecutionTimeTerminationCriterion, maxExecutionTime: 14400000}
+variationRouletteCellList:
+- {weight: 1.0, variation: PermutationCycleCrossover}

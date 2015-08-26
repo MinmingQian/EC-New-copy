@@ -1,0 +1,117 @@
+!!adeuni.group.ec.algorithm.configuration.yml.YamlConfiguration
+
+####################################################################################################
+#
+# BEGINNING of algorithm configuration
+#   * EvolutionaryAlgorithm
+#   * InverOverEA
+
+
+algorithm: EvolutionaryAlgorithm
+
+#
+# ENDING algorithm configuration
+#
+####################################################################################################
+
+
+filename: resource/tsp/pr2392.tsp
+
+
+
+####################################################################################################
+#
+# EvolutionaryAlgorithm Specific Configuration
+
+
+#the representation class used for this evolutionary algorithm
+representation: PermutationRepresentation
+
+
+
+#####################################################
+# Section: population structure
+#----------------------------------------------------
+#| elite(option) |  survivors   | immigrate(option) |
+#----------------------------------------------------
+#population = elite +  survivors + immigrate
+#eliteSize:           is the number of best individuals who will be passed directly to next generation
+#offspringSize:       is the number of individuals be reproduced every iteration(offsprings)
+#survivorSize:        is the number of survivors (except elite) every generation
+#immigrateSize:       is the number of new random generated individuals
+#
+#NOTICE: only integer allowed
+#IMPORTANT!!!: if not alow parent survive, then survivor size must no bigger than offspring size
+
+eliteSize: 1
+offspringSize: 20
+survivorSize: 19
+immigrateSize: 0
+
+#this option allows the parent survived to next genration
+parentAllowToSurvive: true
+
+
+
+#####################################################
+# Section: variation roulette configuration
+# variation: put the implemented variation operator class here
+#
+# NOTICE: only double allowed for weight
+variationRouletteCellList:
+  - {variation: PermutationCycleCrossover, weight: 2.0}
+  - {variation: PermutationOrderCrossover, weight: 2.0}
+  - {variation: PermutationPMXCrossover, weight: 2.0}
+  - {variation: PermutationEdgeRecombinationCrossover, weight: 2.0}
+  - {variation: PermutationSwapMutation, weight: 2.0}
+  - {variation: PermutationInversionMutation, weight: 2.0}
+  - {variation: PermutationScrambleMutation, weight: 2.0}
+  - {variation: PermutationInsertMutation, weight: 2.0}
+
+
+
+
+
+#####################################################
+#
+# Section: parent selection roulette
+#
+
+parentSelectionRouletteCellList:
+  - selection: ElitismSelection
+    weight: 2.0
+  - selection: FitnessProportionalSelection
+    weight: 2.0
+  - selection: TournamentSelection
+    weight: 2.0
+
+
+#####################################################
+#Section survivor selection roulette
+#
+survivorSelectionRouletteCellList:
+  - selection: ElitismSelection
+    weight: 1.0
+  - selection: FitnessProportionalSelection
+    weight: 1.0
+  - selection: TournamentSelection
+    weight: 2.0
+
+
+
+
+
+#####################################################
+#Section: termination criteria pool
+#
+terminationCriteriaPool:
+#  - criterion: IterationTerminationCriterion
+#    maxIterationRound: 25000
+  - criterion: ExecutionTimeTerminationCriterion
+    maxExecutionTime: 14400000
+
+
+
+## ENDING EvolutionaryAlgorithm Specific Configuration
+##
+####################################################################################################
